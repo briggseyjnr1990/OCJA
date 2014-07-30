@@ -1,0 +1,49 @@
+import java.io.*;
+
+public class ReplaceApp{
+
+	public static void main(String [] args){
+
+		Console testString = System.console();
+
+		String name = testString.readLine("Enter a string to change the letters of: ");
+		
+		System.out.println(name);
+
+		name = name.replace('y', 'b');
+
+		System.out.println(name);
+
+		name = name.replace('B' , 'T');
+
+		System.out.println(name);
+
+		name = name.replace('R' , 'B');
+
+		System.out.println(name);
+
+		name = name.replace("gg", "mm");
+
+		System.out.println(name);
+
+		name = name.replace("Trimms", "James");
+
+		System.out.println(name);
+
+		name = name.replace("b" , "nd");
+
+		System.out.println(name);
+
+		Boolean bol = name.startsWith("James");
+
+		System.out.println(bol);
+
+		Boolean bol2 = name.endsWith("Bond");
+
+		System.out.println(bol2);
+
+		name = name.substring(1);
+
+		System.out.println(name);
+	}
+}
