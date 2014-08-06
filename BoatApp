@@ -1,0 +1,29 @@
+public class BoatApp{
+	
+	public static void main(String [] args){
+
+		Boat a = new Boat();
+		Boat b = new Boat();
+		Boat c = new Boat();
+		System.out.println("Boat a's number : " + a.getNumber());
+		System.out.println("Boat b's number : " + b.getNumber());
+		System.out.println("Boat c's number : " + c.getNumber());
+		System.out.println("");
+		System.out.println("Total boats: " + Boat.getPop());
+	}
+}
+class Boat{
+	
+	private static long pop = 0L;
+	private long number = 0L;
+
+	Boat(){
+		this.number = ++pop;
+	}
+	public static long getPop(){
+		return pop;
+	}
+	public long getNumber(){
+		return number;
+	}
+}
