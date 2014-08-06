@@ -1,0 +1,26 @@
+public class EnumApp{
+
+	enum TrafficColour{RED, GREEN, AMBER}
+	TrafficColour col = TrafficColour.RED;
+
+	public static void main (String [] args){
+		EnumApp ea = new EnumApp();
+		ea.lights();
+	}
+	
+	public void lights(){
+		
+		if (col == TrafficColour.RED){
+		
+			System.out.println("Stop the traffic");
+		}
+		if (col == TrafficColour.GREEN){
+
+			System.out.println("Let traffic continue");
+		}
+		if (col == TrafficColour.AMBER){
+
+			System.out.println("Prepare to stop traffic");
+		}
+	}
+}
