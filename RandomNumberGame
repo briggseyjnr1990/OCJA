@@ -1,0 +1,29 @@
+import static java.lang.System.out;
+import static java.lang.System.in;
+import java.util.Scanner;
+import java.util.Random;
+
+public class RandomNumberGame{
+
+	public static void main (String[] args){
+
+		Scanner guess = new Scanner(System.in);
+		int numTries = 0;
+		int randomNumber = new Random().nextInt(10) + 1;
+
+		out.println("Welcome to the guessing game, NERD!");
+		out.print("Enter a number between 1 and 10: ");
+
+		int inputNumber = guess.nextInt();
+		numTries++;
+		
+		while (inputNumber != randomNumber){
+
+			out.println("You lose, NERD!");
+			out.println("Try again, go on, a number between 1 and 10, I dare ya!!");
+			inputNumber = guess.nextInt();
+			numTries++;
+		}
+			out.println("You win after " + numTries + " tries, NERD!");
+	}
+}
