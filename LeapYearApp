@@ -1,0 +1,17 @@
+public class LeapYearApp{
+
+	public static void main(String [] args){
+
+		LeapYearApp la = new LeapYearApp();
+		int year = 296;
+		boolean result = la.isLeapYear(year);
+		System.out.println("Is " + year +" a leap year? " + result);
+	}
+	private boolean isLeapYear(int year){
+
+		return(((year % 4 == 0) && !(year % 100 == 0)) ^ (year % 400 == 0));
+		//return((year % 4 == 0) && (!(year % 100 == 0) || (year % 400 == 0)));
+		//return(((year % 4 == 0) && !(year % 100 == 0)) || (year % 400 == 0));
+		//return((year % 4 == 0) && !((year % 100 == 0) && !(year % 400 == 0)));
+	}
+}
