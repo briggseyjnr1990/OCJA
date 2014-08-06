@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+
+public class ArrayListExample{
+	public static void main (String [] args){
+		ArrayListExample ale = new ArrayListExample();
+		ale.makeList();
+	}
+	public void makeList(){
+		ArrayList<String> myList = new ArrayList<String>();
+		String truth = "trek";
+		myList.add(" rocks");
+		myList.add(truth);
+		myList.add(truth + truth);
+		System.out.println(myList.size());
+		System.out.println(myList.contains(2012));
+		System.out.println(myList.contains("trektrek"));
+		myList.remove("trek");
+		System.out.println(myList.size());
+	}
+}
