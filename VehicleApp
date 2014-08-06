@@ -11,3 +11,12 @@ public class VehicleApp{
 		car.setModel("Veyron");
 	}
 }
+class CarClass{
+	private String model = "ka";
+	public void setModel(String newModel){
+		this.model = newModel;
+	}
+	public String getModel(){
+		return this.model;
+	}
+}
