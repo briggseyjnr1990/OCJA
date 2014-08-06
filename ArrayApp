@@ -1,0 +1,43 @@
+public class ArrayApp{
+	public static void main (String [] args){
+
+		int[] scores = new int[100];
+		for (int i = 0; i < scores.length; ++i){
+			scores[i] = (int) (Math.random()*101);
+			System.out.println(scores[i]);
+		}
+
+		int max = scores[0];
+
+		for (int counter = 1; counter < scores.length; counter++){
+
+     			if (scores[counter] > max){
+
+      				max = scores[counter];
+     			}
+		}
+
+		System.out.println("The highest maximum value is: " + max);
+
+		int min = scores[0];
+
+		for(int counter = 1; counter < scores.length; counter++){
+	
+			if(scores[counter]< min){
+		
+				min = scores[counter];
+			}
+		}
+		System.out.println("The lowest value is: " + min);
+
+		double total = 0D;
+
+		for(int counter =1; counter < scores.length; counter++){
+	
+			total += scores[counter];
+		}
+		System.out.println("The total of all the elements in this array is : " + total);
+		total = total/scores.length;
+		System.out.println("The mean of this array is : " + total);
+	}
+}
