@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+
+public class ArrayListApp{
+
+	public static void main (String [] args){
+		
+		ArrayList<Integer> al = new ArrayList<Integer>(16);
+		
+		al.add(new Integer(1));
+		al.add(new Integer(2));
+		al.add(0, 2014);
+		
+		System.out.println(al.get(0) + " " + al.get(1) + " " + al.size());
+	}
+}
