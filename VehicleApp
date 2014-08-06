@@ -1,0 +1,13 @@
+package com.roybriggs.cars;
+public class VehicleApp{
+	public static void main(String [] args){
+		VehicleApp va = new VehicleApp();
+		CarClass myCar = new CarClass();
+		System.out.println(myCar.getModel());
+		va.changeCar(myCar);
+		System.out.println(myCar.getModel());
+	}
+	private void changeCar(CarClass car){
+		car.setModel("Veyron");
+	}
+}
