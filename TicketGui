@@ -1,0 +1,241 @@
+package com.yellowteam.codingchallenge;
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+
+public class Gui extends JFrame {
+
+	private JPanel contentPane;
+	JTextArea textArea = new JTextArea();
+	String option;
+	Person[] people;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gui frame = new Gui();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Gui() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
+		JLabel lblSelectConcert = new JLabel("Select Concert");
+		lblSelectConcert.setBounds(24, 10, 98, 14);
+		contentPane.add(lblSelectConcert);
+		
+		JComboBox<String> comboBox1 = new JComboBox<String>();
+		String option = (String) comboBox1.getSelectedItem();
+		comboBox1.addItem("Concert 1");
+		comboBox1.addItem("Concert 2");
+		comboBox1.addItem("Concert 3");
+		comboBox1.addItem("Concert 4");
+		comboBox1.addItem("Concert 5");
+		
+		comboBox1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox comboBox1 = (JComboBox)e.getSource();
+		        String option = (String)comboBox1.getSelectedItem();
+		       
+
+					if (option == "Concert 1") {
+					System.out.println("Concert 1 info");
+					} else if (option == "Concert 2"){
+						System.out.println("Concert 2 info");
+					}  else if (option == "Concert 3"){
+						System.out.println("Concert 3 info");
+					}  else if (option == "Concert 4"){
+						System.out.println("Concert 4 info");
+					}	 else if (option == "Concert 5"){
+								System.out.println("Concert 5 info"); }
+			}					
+		});
+		comboBox1.setBounds(122, 7, 146, 20);
+		contentPane.add(comboBox1);
+		
+		JButton btnSellAllDa = new JButton("Sell all da tickets");
+		btnSellAllDa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sellAll();
+				
+			}
+		});
+		btnSellAllDa.setBounds(244, 75, 146, 23);
+		contentPane.add(btnSellAllDa);
+		
+		JSpinner cheapSpin = new JSpinner();
+		cheapSpin.setModel(new SpinnerNumberModel(65, 1, 99, 1));
+		cheapSpin.setBounds(123, 32, 47, 20);
+		contentPane.add(cheapSpin);
+		
+		JLabel lblCheapTicketPrice = new JLabel("Cheap ticket - price");
+		lblCheapTicketPrice.setBounds(24, 35, 98, 14);
+		contentPane.add(lblCheapTicketPrice);
+		
+		JLabel lblExpensiveTicketPrice = new JLabel("Exp ticket - price");
+		lblExpensiveTicketPrice.setBounds(24, 60, 98, 14);
+		contentPane.add(lblExpensiveTicketPrice);
+		
+		JSpinner expSpin = new JSpinner();
+		expSpin.setModel(new SpinnerNumberModel(100, 100, 200, 1));
+		expSpin.setBounds(123, 57, 47, 20);
+		contentPane.add(expSpin);
+		
+		JLabel lblTicketsAvailable = new JLabel("tickets available");
+		lblTicketsAvailable.setBounds(182, 35, 86, 14);
+		contentPane.add(lblTicketsAvailable);
+		
+		JLabel lblTicketsAvailable_1 = new JLabel("tickets available");
+		lblTicketsAvailable_1.setBounds(180, 60, 88, 14);
+		contentPane.add(lblTicketsAvailable_1);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(60000, 0, 80000, 1000));
+		spinner.setBounds(268, 32, 122, 20);
+		contentPane.add(spinner);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(20000, 0, 80000, 1000));
+		spinner_1.setBounds(268, 57, 122, 20);
+		contentPane.add(spinner_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(24, 102, 400, 149);
+		contentPane.add(scrollPane);
+		
+		
+		textArea.setLineWrap(true);
+		scrollPane.setViewportView(textArea);
+		
+		JButton btnDisplaySales = new JButton("Display sales");
+		btnDisplaySales.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				StringBuilder builder = new StringBuilder();
+
+				for (int i=1; i<people.length; i++) {
+				//builder.append(people[i]);
+				builder.append( people[i].getName() + " " + people[i].getEmail() + " " + people[i].getCreditCard() + "\n");
+				}
+				String fullList = builder.toString();
+				
+				
+				textArea.setText(fullList);
+				
+				//System.out.println(people[1].getName() + " " + people[1].getEmail() + " " + people[1].getCreditCard());
+				
+			}
+		});
+		btnDisplaySales.setBounds(59, 75, 111, 23);
+		contentPane.add(btnDisplaySales);
+	}
+
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+	
+	private void sellAll() {
+		
+		int tickets = 100;
+		int ticketPrice = 65;
+		int cheap = 65;
+		int expensive = 100;
+		String concertDate = "Day One";
+		Person aPerson = new Person();
+		people = new Person[tickets + 1];
+		people [0] = aPerson;
+		
+		for(int i = 1; i <= tickets; ++i){
+			Person p1 = new Person();
+			String name = "Tyler" + i;
+			p1.setName(name);
+			p1.setEmail(name + "@Fightclub.com");
+			p1.setCreditCard(1000_0000_0000_0000L + i);
+			people[i] = p1;
+			if(i>60000 && i<=80000){
+				ticketPrice = expensive;
+			}
+			if(i>80000 && i <= 159999){
+				concertDate = "Day Two";
+				ticketPrice = cheap;
+				if(i > 140000){
+					ticketPrice = expensive;
+				}
+			}
+			else if(i>160000 && i <= 239999){
+				concertDate = "Day Three";
+				ticketPrice = cheap;
+				if(i>220000){
+					ticketPrice = expensive;
+				}
+			}
+			else if(i>240000 && i<= 319999){
+				concertDate = "Day Four";
+				ticketPrice = cheap;
+				if(i>300000){
+					ticketPrice = expensive;
+				}
+			}
+				
+			else if(i>320000){
+				concertDate = "Day Five";
+				ticketPrice = cheap;
+				if(i>380000){
+					ticketPrice = expensive;
+				}
+			}
+			System.out.println(p1.getName() + " " + p1.getEmail() + " " + p1.getCreditCard() + " €" + ticketPrice
+					+ " " + concertDate);
+		}
+		
+	}
+	
+} //class
