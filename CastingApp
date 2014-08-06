@@ -1,0 +1,15 @@
+public class CastingApp{
+
+	public static void main(String [] args){
+	
+		float num = 72.89F;
+		int in = (int) num;
+		long time = 3000000000L;
+		int ti = (int) time;
+
+		System.out.println("Float = " + num);
+		System.out.println("Int = " + in);
+		System.out.println("Long = " + time);
+		System.out.println("Int = " + ti);
+	}
+}
