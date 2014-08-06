@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class ArraysiaApp{
+	Scanner myScanner = new Scanner(System.in);
+	private static int X_SIZE = 100;
+	private static int Y_SIZE = 100;
+	private static int Z_SIZE = 100;
+	private boolean[][][] arraysia = new boolean[X_SIZE][Y_SIZE][Z_SIZE];
+	boolean bError = false;
+
+	public static void main(String[] args){
+		ArraysiaApp arr = new ArraysiaApp();
+		arr.hideElisa();
+		Thread t1 = new Thread(new Finder(arr.arraysia, "Hero"));
+		Thread t2 = new Thread(new Finder(arr.arraysia, "Collector"));
+		t1.start();
+		t2.start();
+	}
+	private void hideElisa(){
+		do{
+			try{
+				System.out.print("Set the parameters of X axis: ");
+				X_SIZE = myScanner.nextInt();
+				System.out.print("Set the parameters of Y axis: ");
+				Y_SIZE = myScanner.nextInt();
+				System.out.print("Set the parameters of Z axis: ");
+				Z_SIZE = myScanner.nextInt();
+			} 
+            		catch (Exception e) {
+                		System.out.println("Error! Select a NUMBER when setting the parameters of the axis!");
+            		}
+	 	} while (bError);
+
+		int x = (int) (Math.random()*X_SIZE);
+		int y = (int) (Math.random()*Y_SIZE);
+		int z = (int) (Math.random()*Z_SIZE);
+		arraysia[x][y][z] = true;
+		System.out.println("Elisa is hiding at: " + x +","+ y +","+ z);
+	}	
+}
+class Finder implements Runnable{
+	private boolean[][][] arraysia;
+	private String name;
+
+	Finder(boolean[][][] arraysia, String name){
+		this.arraysia = arraysia;
+		this.name=name;
+	}
+	public void run(){
+		System.out.println(findElisa());
+	}
+
+	private String findElisa(){
+		for(int i=0; i < arraysia.length; ++i){
+			for(int j=0; j < arraysia[i].length; ++j){
+				for(int k=0; k < arraysia[i][j].length; ++k){
+					synchronized(Finder.class){
+						if(arraysia[i][j][k]){
+							arraysia[i][j][k] = false; //She's gone now!
+							return (this.name +" found Elisa at "+ i +","+ j +","+ k);	
+						}
+					}
+				}
+			}
+		}
+	return this.name + " can't find Elisa!";
+	}
+}
