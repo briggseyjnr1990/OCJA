@@ -1,0 +1,98 @@
+import java.util.Random;
+
+public class WorldCupApp{
+
+    public static void main(String[] args){
+        
+        // create and initialize classSize and NumTeams variables    
+        int CLASS_SIZE = 20;
+        int NUM_TEAMS = 32;
+
+        // create storage array to contain class-room draw participant names 
+        String[] drawParticipants = new String[CLASS_SIZE];
+
+        // create storage array to contain names of competing soccer teams
+        String[] soccerTeams = new String[NUM_TEAMS];
+        
+        // create array to flag when teams have been assigned to draw partipants and prevent duplicates
+        boolean[] participantAssigned = new boolean[CLASS_SIZE];
+
+        // load drawParticipants array with classroom members        
+        drawParticipants[0] = "Alan";            drawParticipants[1] = "Colin V.";
+        drawParticipants[2] = "Jason";             drawParticipants[3] = "Anders";
+        drawParticipants[4] = "Sebastian";        drawParticipants[5] = "Frank";
+        drawParticipants[6] = "Martin";            drawParticipants[7] = "Gary";
+        drawParticipants[8] = "Mark";            drawParticipants[9] = "Andrew";
+        drawParticipants[10] = "Mia";            drawParticipants[11] = "JP";        
+        drawParticipants[12] = "Sam";            drawParticipants[13] = "Colin G.";
+        drawParticipants[14] = "Stephen M.";        drawParticipants[15] = "Briggsey";
+        drawParticipants[16] = "Gordon";        drawParticipants[17] = "Amir";
+        drawParticipants[18] = "Stephen D.";        drawParticipants[19] = "Anthony";
+                
+        // load soccerTeams array with partipating national soccer teams
+        soccerTeams[0] = "Brazil";            soccerTeams[1] = "Croatia";
+        soccerTeams[2] = "Mexico";            soccerTeams[3] = "Cameroon";
+        soccerTeams[4] = "Spain";            soccerTeams[5] = "Netherlands";
+        soccerTeams[6] = "Chile";            soccerTeams[7] = "Australia"; 
+        soccerTeams[8] = "Colombia";            soccerTeams[9] = "Greece";
+        soccerTeams[10] = "Ivory Coast";        soccerTeams[11] = "Japan";            
+        soccerTeams[12] = "Uruguay";            soccerTeams[13] = "Costa Rica";
+        soccerTeams[14] = "England";            soccerTeams[15] = "Italy";
+        soccerTeams[16] = "Switzerland";        soccerTeams[17] = "Ecuador";
+        soccerTeams[18] = "France";            soccerTeams[19] = "Honduras";
+        soccerTeams[20] = "Argentina";            soccerTeams[21] = "Bosnia & Herzegovina";
+        soccerTeams[22] = "Iran";            soccerTeams[23] = "Nigeria";
+        soccerTeams[24] = "Germany";            soccerTeams[25] = "Portugal";
+        soccerTeams[26] = "Ghana";            soccerTeams[27] = "United States";
+        soccerTeams[28] = "Belgium";            soccerTeams[29] = "Algeria";
+        soccerTeams[30] = "Russia";            soccerTeams[31] = "South Korea";            
+    
+        // initialize participantAssigned array
+        for(int i = 0; i < participantAssigned.length; ++i){
+            participantAssigned[i] = false;
+        }
+
+        System.out.println("\n\n\n\n MAIN SELECTIONS...\n\n");
+        
+        // INITIAL DRAW FOR ENTIRE LIST OF CLASS-NAMES TO BE ASSIGNED TO FIRST TEAMS ON THE LIST
+        // randomly pick a classroom member and assign them to a soccer team & eliminating those already assigned from the draw
+        for(int i = 0; i < drawParticipants.length; ++i){
+            boolean successfulAssignment = false;
+            while(successfulAssignment == false){
+                Random randomGenerator = new Random();
+                int randomInt = randomGenerator.nextInt(drawParticipants.length);
+                if(participantAssigned[randomInt] == false){
+                    System.out.println("    " + soccerTeams[i] + ": " + drawParticipants[randomInt]);
+                    participantAssigned[randomInt] = true;
+                    successfulAssignment = true;
+System.console().readLine("");
+                }
+
+            }                        
+        }
+
+        // re-initialize participantAssigned array with in preperation for secondary draw        
+        for(int i = 0; i < participantAssigned.length; ++i){
+            participantAssigned[i] = false;
+        }
+
+        // FURTHER DRAW FOR CLASS-NAMES TO BE ASSIGNED TO REMAINING TEAMS ON THE LIST
+        // randomly pick a classroom member and assign them to a soccer team & eliminating those already assigned from the draw
+        System.out.println("\n\n\n\n ADDITIONAL SELECTIONS...\n\n");     
+        for(int i = drawParticipants.length; i < NUM_TEAMS; ++i){
+            boolean successfulAssignment = false;
+            while(successfulAssignment == false){
+                Random randomGenerator = new Random();
+                int randomInt = randomGenerator.nextInt(drawParticipants.length);
+                if(participantAssigned[randomInt] == false){
+                    System.out.println("    " + soccerTeams[i] + ": " + drawParticipants[randomInt]);
+                    participantAssigned[randomInt] = true;
+                    successfulAssignment = true;
+System.console().readLine("");
+                }
+                        
+            }
+        }
+        System.out.print("\n\n\n(Please scroll up or Maximize Console Window to view full results!)\n\n");
+    }
+}
